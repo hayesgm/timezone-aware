@@ -1,13 +1,19 @@
 # TimezoneAware
 
-TODO: Write a gem description
+Timezone aware uses JavaScript to detect a user's timezone.  After the user's own timezone is detected (i.e. after the first request), `Time.zone` is set automatically in an `around_filter` for each request.  In your views and controllers, you can simply call `Time.zone.now` and know this will be in the user's local time.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'timezone_aware'
+gem 'timezone-aware'
+```
+
+Add `timezone-aware.js` to `application.js`
+
+```javascript
+//=require timezone-aware
 ```
 
 And then execute:
@@ -16,15 +22,35 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install timezone_aware
+    $ gem install timezone-aware
 
 ## Usage
 
-TODO: Write usage instructions here
+Timezone aware automatically sets `Time.zone` during each request.  After the JavaScript determines the user's timezone (via [jstz.js](http://pellepim.bitbucket.org/jstz/)), we set a cookie `time_zone`.  Timezone aware then sets `Time.zone` based on this cookie in an `around_filter`.
+
+**Note: this is not thread safe as global Time.zone is being set for each request.**
+
+## Examples
+
+An example view: **home.html.erb**
+```ruby
+The time is now <%= Time.zone.now %>
+```
+
+Converting time zone back and forth
+```ruby
+Time.now.utc.in_time_zone(Time.zone)
+```
+
+## TODO
+
+* Add Poltergiest test cases
+* Explore ways to get correct timezone on first request
+* Explore ways to make thread safe
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/timezone_aware/fork )
+1. Fork it ( https://github.com/hayesgm/timezone-aware/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

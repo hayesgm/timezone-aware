@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'timezone_aware/version'
+require 'timezone-aware/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "timezone_aware"
+  spec.name          = "timezone-aware"
   spec.version       = TimezoneAware::VERSION
   spec.authors       = ["Geoff Hayes"]
   spec.email         = ["hayesgm@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Rails timezone set automatically to browser's own timezone.}
+  spec.description   = %q{Timezone Aware tracks a user's timezone and sets Time.zone to that for each individual request.}
+  spec.homepage      = "http://github.com/hayesgm/timezone-aware"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "railties"
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake", "~> 10.0"
 end
