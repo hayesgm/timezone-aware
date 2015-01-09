@@ -1,6 +1,6 @@
-# TimezoneAware
+# Timezone Aware
 
-Timezone aware uses JavaScript to detect a user's timezone.  After the user's own timezone is detected (i.e. after the first request), `Time.zone` is set automatically in an `around_filter` for each request.  In your views and controllers, you can simply call `Time.zone.now` and know this will be in the user's local time.
+Timezone aware is a Rails gem to automically localize each request to a user's own timezone.  A user's timezone is detected via JavaScript, then `Time.zone` is set automatically in an `around_filter` for each request from that user.  In your views and controllers, you can simply call `Time.zone.now` and know this will be in the user's local time.
 
 ## Installation
 
